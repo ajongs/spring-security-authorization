@@ -42,7 +42,7 @@ public class UsernamePasswordAuthenticationToken implements Authentication {
     }
 
     @Override
-    public Set<String> getAuthority() {
+    public Set<String> getAuthorities() {
         return authorities;
     }
 }

@@ -9,7 +9,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -23,7 +22,7 @@ public class CheckAdminFilter extends GenericFilterBean {
             httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
         // 해당 사용자가 없으면
-        if (!authentication.getAuthority().contains("ADMIN")) {
+        if (!authentication.getAuthorities().contains("ADMIN")) {
             httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
             return;
         }

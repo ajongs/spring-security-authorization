@@ -15,10 +15,11 @@ import nextstep.security.userdetails.UserDetails;
 import nextstep.security.userdetails.UserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.util.List;
 import java.util.Set;
-
+@EnableAspectJAutoProxy
 @Configuration
 public class SecurityConfig {
 

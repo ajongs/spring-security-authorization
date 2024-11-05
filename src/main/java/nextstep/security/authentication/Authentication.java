@@ -10,5 +10,5 @@ public interface Authentication {
 
     boolean isAuthenticated();
 
-    Set<String> getAuthority();
+    Set<String> getAuthorities();
 }
