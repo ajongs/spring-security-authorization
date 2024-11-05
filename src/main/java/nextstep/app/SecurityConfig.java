@@ -10,12 +10,14 @@ import nextstep.security.config.DelegatingFilterProxy;
 import nextstep.security.config.FilterChainProxy;
 import nextstep.security.config.SecurityFilterChain;
 import nextstep.security.context.SecurityContextHolderFilter;
+import nextstep.security.filter.CheckAdminFilter;
 import nextstep.security.userdetails.UserDetails;
 import nextstep.security.userdetails.UserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
+import java.util.Set;
 
 @Configuration
 public class SecurityConfig {
@@ -42,7 +44,8 @@ public class SecurityConfig {
                 List.of(
                         new SecurityContextHolderFilter(),
                         new UsernamePasswordAuthenticationFilter(userDetailsService()),
-                        new BasicAuthenticationFilter(userDetailsService())
+                        new BasicAuthenticationFilter(userDetailsService()),
+                        new CheckAdminFilter()
                 )
         );
     }
@@ -62,6 +65,11 @@ public class SecurityConfig {
                 @Override
                 public String getPassword() {
                     return member.getPassword();
+                }
+
+                @Override
+                public Set<String> getAuthorities() {
+                    return member.getRoles();
                 }
             };
         };
